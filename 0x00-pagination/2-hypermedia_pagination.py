@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#/usr/bin/env python3
 """
 Simple pagination:
 
@@ -16,7 +16,7 @@ be returned.
 """
 import csv
 import math
-from typing import List, Tuple
+from typing import Dict, List, Tuple
 
 
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
@@ -81,7 +81,7 @@ class Server:
             return []
         return dataset[start_index:end_index]
 
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> dict:
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
         """
         get_hyper method that takes the same arguments (and defaults) as
         get_page and returns a dictionary containing the following key-value
