@@ -30,7 +30,7 @@ class LRUCache(BaseCaching):
     def put(self, key, item):
         """Input a new item into the cache"""
         if key is None and item is None:
-            pass
+            return
         if key not in self.cache_data:
             if len(self.cache_data) + 1 > BaseCaching.MAX_ITEMS:
                 # Remove the least recently used item if the cache is full
