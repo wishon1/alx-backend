@@ -36,9 +36,9 @@ class FIFOCache(BaseCaching):
             self.cache_data[key] = item
 
         if len(self.cache_data) > BaseCaching.MAX_ITEMS:
-             # Remove the first item from the OrderedDict
-            firstKey = self.cache_data.popitem(False)
-            print(f"DISCARD: {firstKey}")
+            # Remove the first item(key) from the OrderedDict
+            first_item, _ = self.cache_data.popitem(False)
+            print(f"DISCARD: {first_item}")
 
     def get(self, key):
         """return the value in self.cache_data linked to key."""
