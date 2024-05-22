@@ -35,7 +35,7 @@ class LIFOCache(BaseCaching):
         if key not in self.cache_data:
             if len(self.cache_data) + 1 > BaseCaching.MAX_ITEMS:
                 # Remove the last item(key) if the cache is full
-                lastKey, _ = self.cache_data.popitem()
+                lastKey, _ = self.cache_data.popitem(True)
                 print(f"DISCARD: {lastKey}")
         self.cache_data[key] = item
         self.cache_data.move_to_end(key, last=True)
