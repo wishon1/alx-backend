@@ -16,7 +16,6 @@ def get(self, key):
 Must return the value in self.cache_data linked to key.
 If key is None or if the key doesn’t exist in self.cache_data, return None
 """
-from collections import OrderedDict
 from base_caching import BaseCaching
 
 
@@ -25,22 +24,16 @@ class LIFOCache(BaseCaching):
     def __init__(self):
         """Initialize the class"""
         super().__init__()
-        self.cache_data = OrderedDict()
 
     def put(self, key, item):
         """Input a new item into the cache"""
         if key is not None or item is not None:
-            if key in self.cache_data:
-                # Remove the key if it already exists to update its
-                # position
-                del self.cache_data[key]
-            elif len(self.cache_data) + 1 > BaseCaching.MAX_ITEMS:
-                # Remove the last item if the cache is full
-                lastKey, _ = self.cache_data.popitem(last=True)
-                print(f"DISCARD: {lastKey}")
-
-            # Add the new key-value pair to the cache
             self.cache_data[key] = item
+            if key not in self.cache_data:
+                if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
+                    # Remove the last item(key) if the cache is full
+                    lastKey, _ = self.cache_data.popitem()
+                    print(f"DISCARD: {lastKey}")
 
     def get(self, key):
         """Return the value in self.cache_data linked to key."""
