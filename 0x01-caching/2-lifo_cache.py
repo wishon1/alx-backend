@@ -29,13 +29,16 @@ class LIFOCache(BaseCaching):
 
     def put(self, key, item):
         """Input a new item into the cache"""
-        if key is not None or item is not None:
-            self.cache_data[key] = item
-            if key not in self.cache_data:
-                if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-                    # Remove the last item(key) if the cache is full
-                    lastKey, _ = self.cache_data.popitem()
-                    print(f"DISCARD: {lastKey}")
+        if key is None or item is None:
+            pass
+
+        if key not in self.cache_data:
+            if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
+                # Remove the last item(key) if the cache is full
+                lastKey, _ = self.cache_data.popitem()
+                print(f"DISCARD: {lastKey}")
+        self.cache_data[key] = item
+        self.cache_data.move_to_end(key, last=True)
 
     def get(self, key):
         """Return the value in self.cache_data linked to key."""
