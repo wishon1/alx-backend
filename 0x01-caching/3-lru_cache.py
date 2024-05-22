@@ -29,11 +29,10 @@ class LRUCache(BaseCaching):
 
     def put(self, key, item):
         """Input a new item into the cache"""
-        if key is not None and item is not None:
-            if key in self.cache_data:
-                # Remove the key if it already exists to update its position
-                del self.cache_data[key]
-            elif len(self.cache_data) + 1 > BaseCaching.MAX_ITEMS:
+        if key is None and item is None:
+            pass
+        if key not in self.cache_data:
+            if len(self.cache_data) + 1 > BaseCaching.MAX_ITEMS:
                 # Remove the least recently used item if the cache is full
                 first_key, _ = self.cache_data.popitem(last=False)
                 print(f"DISCARD: {first_key}")
@@ -41,12 +40,14 @@ class LRUCache(BaseCaching):
             # Add the new key-value pair to the cache
             self.cache_data[key] = item
             self.cache_data.move_to_end(key)
+        else:
+            self.cache_data[key] = item
 
     def get(self, key):
         """Return the value in self.cache_data linked to key"""
         if key is None or key not in self.cache_data:
             return None
-        # Move the accessed key to the end to mark it as recently used
-        value = self.cache_data.pop(key)
-        self.cache_data[key] = value
-        return value
+
+        # Move the accessed key to the front to mark it as recently used
+        self.cache_data.move_to_end(key, last=False)
+        return self.cache_data[key]
