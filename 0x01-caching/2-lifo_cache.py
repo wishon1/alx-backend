@@ -17,6 +17,7 @@ Must return the value in self.cache_data linked to key.
 If key is None or if the key doesn’t exist in self.cache_data, return None
 """
 from base_caching import BaseCaching
+from base_caching import BaseCaching
 
 
 class LIFOCache(BaseCaching):
@@ -24,6 +25,7 @@ class LIFOCache(BaseCaching):
     def __init__(self):
         """Initialize the class"""
         super().__init__()
+        self.cache_data = orderedDict()
 
     def put(self, key, item):
         """Input a new item into the cache"""
