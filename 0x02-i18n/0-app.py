@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """flask application"""
-from flask import (flask, render_template)
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', strict_slashes=False)
 def index():
     """main route"""
     return render_template('index.html')
