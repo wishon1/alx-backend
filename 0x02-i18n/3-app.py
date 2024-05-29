@@ -36,6 +36,7 @@ babel = Babel(app)
 #    @babel.localeselector
 # AttributeError: 'Babel' object has no attribute 'localeselector'
 
+@babel.localeselector
 def get_locale() -> str:
     """Determine the best match for the supported language"""
     return request.accept_language.best_match(app.config['LANGUAGES'])
@@ -43,7 +44,7 @@ def get_locale() -> str:
 
 # @babel.localeselector is not supported in newer versions of babel.
 # use this instead
-babel.init_app(app, locale_selector=get_locale)
+# babel.init_app(app, locale_selector=get_locale)
 
 
 @app.route('/')
