@@ -34,14 +34,17 @@ babel = Babel(app)
 #    exec(code, run_globals)
 #  File "/home/pc/alx-backend/0x02-i18n/3-app.py", line 29, in <module>
 #    @babel.localeselector
-#AttributeError: 'Babel' object has no attribute 'localeselector'
- 
+# AttributeError: 'Babel' object has no attribute 'localeselector'
+
 def get_locale() -> str:
     """Determine the best match for the supported language"""
     return request.accept_language.best_match(app.config['LANGUAGES'])
 
-# @babel.localeselector is not supported in newer versions of babel. use this instead
-babel.init_app(app, locale_selector=locale)
+
+# @babel.localeselector is not supported in newer versions of babel.
+# use this instead
+babel.init_app(app, locale_selector=get_locale)
+
 
 @app.route('/')
 def index() -> str:
