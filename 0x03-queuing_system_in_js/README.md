@@ -21,8 +21,8 @@
 - How to the build a basic Express app interacting with a Redis server and queue
 
 ### Required Files for the Project
-`package.json`[]
-`.babelrc`[]
+- [`package.json`](https://github.com/wishon1/alx-backend/blob/main/0x03-queuing_system_in_js/package.json)
+- [`.babelrc`](https://github.com/wishon1/alx-backend/blob/main/0x03-queuing_system_in_js/.babelrc)
 and…
 Don’t forget to run `$ npm install` when you have the `package.json`
 
