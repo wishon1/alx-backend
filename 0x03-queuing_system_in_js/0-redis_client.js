@@ -5,13 +5,14 @@
  * message Redis client not connected to the server: ERROR_MESSAGE when the
  * connection to Redis does not work
  */
-import  { createClient } from 'redis'
+import { createClient } from 'redis';
+
 const clientInstance = createClient();
 
 clientInstance.on('connect', () => {
-    console.log('Redis client connected to the server');
+  console.log('Redis client connected to the server');
 });
 
 clientInstance.on('error', (err) => {
-    console.error('Redis client not connected to the server:', err.message)
+  console.error('Redis client not connected to the server:', err.message);
 });
