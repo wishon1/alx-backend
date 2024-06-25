@@ -65,4 +65,5 @@ for (let i = 0; i < jobs.length; i += 1) {
   }).on('progress', (progress) => {
     console.log(`Notification job ${job.id} ${progress}% complete`);
   });
+  job.save();
 }
